@@ -412,7 +412,11 @@
       <tr style=<%= style %>>
         <td class="borderTop"><%= game.away_number %></td>
         <% game_date = game.game_date.strftime("%b %e, %Y %l:%M %P") %>
-        <td rowspan="2" class="borderTop"><%= game_date %></td>
+        <td rowspan="2" class="borderTop">
+          <a href="<%= "http://www.espn.com/#{game.game_link}/boxscore?gameId=#{game.game_id}" %>">
+            <%= game_date %>
+          </a>
+        </td>
         <td class="borderTop"><%= game.away_team %></td>
         <td class="borderTop"><%= away_result %></td>
         <td rowspan="2" class="borderTop"><%= game_status %></td>
