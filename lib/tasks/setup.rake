@@ -2995,6 +2995,11 @@ namespace :setup do
       "Stephen F. Austin" => "Stephen F Austin",
       "Florida Intl." => "Florida Intl",
       "Connecticut" => "UConn",
-      "Louisiana-Monroe" => "UL Monroe"
+      "Louisiana-Monroe" => "UL Monroe",
+      "LIU" => "Long Island University",
+      "Tennessee-Martin" => "UT Martin",
+      "Bryant University" => "Bryant",
+      "Merrimack College" => "Merrimack",
+      "Southeastern Louisiana" => "SE Louisiana"
   }
 end
