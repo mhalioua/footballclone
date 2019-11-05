@@ -2973,7 +2973,6 @@ namespace :setup do
       "Hawaii" => "Hawai'i",
       "Brigham Young" => "BYU",
       "Massachusetts" => "UMass",
-      "Florida International" => "Florida Intl",
       "Central Connecticut State" => "Central Connecticu",
       "Virginia Military Institute" => "VMI",
       "North Carolina State" => "NC State",
