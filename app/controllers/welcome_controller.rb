@@ -14,10 +14,11 @@ class WelcomeController < ApplicationController
     @game_start_index = @game_index[0..9]
     @game_end_index = @game_index[13..23]
     if @teamPicker != false
-			@games = Game.where("home_team LIKE ? AND game_date < ?", '%' + @teamPicker, Date.today).or(Game.where("away_team LIKE ? AND game_date < ?", '%' + @teamPicker, Date.today))
+			@games = Game.where("home_team LIKE ? AND game_date < ? AND game_type <> ?", '%' + @teamPicker, Date.today, "CFB1")
+                   .or(Game.where("away_team LIKE ? AND game_date < ? AND game_type <> ?", '%' + @teamPicker, Date.today, "CFB1"))
 									 .order("game_date")
     else
-      @games = Game.where("game_date between ? and ?", Date.strptime(@game_start_index).beginning_of_day, Date.strptime(@game_end_index).end_of_day)
+      @games = Game.where("game_date between ? and ? AND game_type <> ?", Date.strptime(@game_start_index).beginning_of_day, Date.strptime(@game_end_index).end_of_day, "CFB1")
                    .order("game_state")
                    .order("game_status")
                    .order("game_date")

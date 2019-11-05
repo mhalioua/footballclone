@@ -11,12 +11,15 @@ namespace :setup do
       else
         url = "http://www.espn.com/nfl/schedule/_/week/#{result}/seasontype/2"
       end
-      Rake::Task["setup:getWeekly"].invoke(url, "nfl")
+      Rake::Task["setup:getWeekly"].invoke(url, "nfl", "NFL")
       Rake::Task["setup:getWeekly"].reenable
 
-      result = 0 if result < 0
-      url = "http://www.espn.com/college-football/schedule/_/week/#{result + 2}"
-      Rake::Task["setup:getWeekly"].invoke(url, "college-football")
+      url = "https://www.espn.com/college-football/schedule/_/group/80"
+      Rake::Task["setup:getWeekly"].invoke(url, "college-football", "CFB")
+      Rake::Task["setup:getWeekly"].reenable
+
+      url = "https://www.espn.com/college-football/schedule/_/group/81"
+      Rake::Task["setup:getWeekly"].invoke(url, "college-football", "CFB1")
       Rake::Task["setup:getWeekly"].reenable
     end
   end
@@ -72,15 +75,12 @@ namespace :setup do
     Rake::Task["setup:full"].reenable
   end
 
-  task :getWeekly, [:url, :game_link] => [:environment] do |t, args|
+  task :getWeekly, [:url, :game_link, :game_type] => [:environment] do |t, args|
     include Api
 
     game_link = args[:game_link]
+    game_type = args[:game_type]
     url = args[:url]
-    game_type = "NFL"
-    if game_link == "college-football"
-      game_type = "CFB"
-    end
 
     doc = download_document(url)
     puts url
@@ -101,7 +101,6 @@ namespace :setup do
       end
 
       if slice.children[index[:home_team]].text == "TBD TBD"
-        result = "TBD"
         home_team = "TBD"
         home_abbr = "TBD"
         away_abbr = "TBD"
@@ -128,7 +127,6 @@ namespace :setup do
           away_abbr = slice.children[index[:away_team]].children[0].children[2].text
           away_team = slice.children[index[:away_team]].children[0].children[0].text
         end
-        result = slice.children[index[:result]].text
       end
 
       url = "http://www.espn.com/#{game_link}/game?gameId=#{game_id}"
@@ -2541,7 +2539,7 @@ namespace :setup do
 
       game_id = export.game_id
       game_link = "nfl"
-      if game_type == "CFB"
+      if game_type != "NFL"
         game_link = "college-football"
       end
 
