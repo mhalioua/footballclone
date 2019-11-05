@@ -6,19 +6,17 @@ namespace :setup do
     result = (day_index + 4) / 7 - 35
 
     if result > -5
-      game_link = "nfl"
       if result < 1
         url = "http://www.espn.com/nfl/schedule/_/week/#{result + 5}"
       else
         url = "http://www.espn.com/nfl/schedule/_/week/#{result}/seasontype/2"
       end
-      Rake::Task["setup:getWeekly"].invoke(url, game_link)
+      Rake::Task["setup:getWeekly"].invoke(url, "nfl")
       Rake::Task["setup:getWeekly"].reenable
 
       result = 0 if result < 0
-      game_link = "college-football"
-      url = "http://www.espn.com/college-football/schedule/_/week/#{result + 1}"
-      Rake::Task["setup:getWeekly"].invoke(url, game_link)
+      url = "http://www.espn.com/college-football/schedule/_/week/#{result + 2}"
+      Rake::Task["setup:getWeekly"].invoke(url, "college-football")
       Rake::Task["setup:getWeekly"].reenable
     end
   end
