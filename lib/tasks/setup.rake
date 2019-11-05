@@ -2992,7 +2992,6 @@ namespace :setup do
       "Prairie View A&M" => "Prairie View",
       "McNeese State" => "McNeese",
       "NC A&T" => "North Carolina A&T",
-      "Stephen F. Austin" => "Stephen F Austin",
       "Florida Intl." => "Florida Intl",
       "Connecticut" => "UConn",
       "Louisiana-Monroe" => "UL Monroe",
