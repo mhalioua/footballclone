@@ -40,7 +40,7 @@ namespace :setup do
   end
 
   task :min => :environment do
-    game_day = (Time.now - 4.hours).to_formatted_s(:number)[0..7]
+    game_day = (Time.now - 5.hours).to_formatted_s(:number)[0..7]
 
     Rake::Task["setup:getGameState"].invoke(game_day)
     Rake::Task["setup:getGameState"].reenable
@@ -51,17 +51,7 @@ namespace :setup do
     Rake::Task["setup:second"].invoke(game_day)
     Rake::Task["setup:second"].reenable
 
-    game_day = (Time.now - 28.hours).to_formatted_s(:number)[0..7]
-    Rake::Task["setup:getGameState"].invoke(game_day)
-    Rake::Task["setup:getGameState"].reenable
-
-    Rake::Task["setup:first"].invoke(game_day)
-    Rake::Task["setup:first"].reenable
-
-    Rake::Task["setup:second"].invoke(game_day)
-    Rake::Task["setup:second"].reenable
-
-    game_day = (Time.now - 76.hours).to_formatted_s(:number)[0..7]
+    game_day = (Time.now - 29.hours).to_formatted_s(:number)[0..7]
     Rake::Task["setup:getGameState"].invoke(game_day)
     Rake::Task["setup:getGameState"].reenable
 
@@ -76,13 +66,10 @@ namespace :setup do
     Rake::Task["setup:daily"].invoke
     Rake::Task["setup:daily"].reenable
 
-    game_day = (Time.now - 4.hours).to_formatted_s(:number)[0..7]
+    game_day = (Time.now - 5.hours).to_formatted_s(:number)[0..7]
     Rake::Task["setup:full"].invoke(game_day)
     Rake::Task["setup:full"].reenable
-    game_day = (Time.now - 28.hours).to_formatted_s(:number)[0..7]
-    Rake::Task["setup:full"].invoke(game_day)
-    Rake::Task["setup:full"].reenable
-    game_day = (Time.now - 76.hours).to_formatted_s(:number)[0..7]
+    game_day = (Time.now - 29.hours).to_formatted_s(:number)[0..7]
     Rake::Task["setup:full"].invoke(game_day)
     Rake::Task["setup:full"].reenable
   end
@@ -448,7 +435,7 @@ namespace :setup do
         if @nicknames[away_name]
           away_name = @nicknames[away_name]
         end
-        date = Time.new(game_day[0..3], game_day[4..5], game_day[6..7]).change(hour: 0, min: min).in_time_zone('Eastern Time (US & Canada)') + 4.hours + hour.hours
+        date = Time.new(game_day[0..3], game_day[4..5], game_day[6..7]).change(hour: 0, min: min).in_time_zone('Eastern Time (US & Canada)') + 5.hours + hour.hours
         matched = games.select {|field| field.home_team.include?(home_name) && field.away_team.include?(away_name) && field.game_date == date}
         if matched.size > 0
           update_game = matched.first
@@ -545,7 +532,7 @@ namespace :setup do
         if ap == "a" && hour == 12
           hour = 24
         end
-        date = Time.new(game_day[0..3], game_day[4..5], game_day[6..7]).change(hour: 0, min: min).in_time_zone('Eastern Time (US & Canada)') + 4.hours + hour.hours
+        date = Time.new(game_day[0..3], game_day[4..5], game_day[6..7]).change(hour: 0, min: min).in_time_zone('Eastern Time (US & Canada)') + 5.hours + hour.hours
         matched = games.select {|field| (field.home_number == home_number && field.away_number == away_number && field.game_date == date)}
         if matched.size > 0
           update_game = matched.first
@@ -640,7 +627,7 @@ namespace :setup do
         if ap == "a" && hour == 12
           hour = 24
         end
-        date = Time.new(game_day[0..3], game_day[4..5], game_day[6..7]).change(hour: 0, min: min).in_time_zone('Eastern Time (US & Canada)') + 4.hours + hour.hours
+        date = Time.new(game_day[0..3], game_day[4..5], game_day[6..7]).change(hour: 0, min: min).in_time_zone('Eastern Time (US & Canada)') + 5.hours + hour.hours
         matched = games.select {|field| (field.home_number == home_number && field.away_number == away_number && field.game_date == date)}
         if matched.size > 0
           update_game = matched.first
@@ -2296,7 +2283,7 @@ namespace :setup do
         if @nicknames[away_name]
           away_name = @nicknames[away_name]
         end
-        date = Time.new(game_day[0..3], game_day[4..5], game_day[6..7]).change(hour: 0, min: min).in_time_zone('Eastern Time (US & Canada)') + 4.hours + hour.hours
+        date = Time.new(game_day[0..3], game_day[4..5], game_day[6..7]).change(hour: 0, min: min).in_time_zone('Eastern Time (US & Canada)') + 5.hours + hour.hours
 
         line_two = closer.index(" ")
         closer_side = line_two ? closer[0..line_two] : ""
@@ -2411,7 +2398,7 @@ namespace :setup do
         if @nicknames[away_name]
           away_name = @nicknames[away_name]
         end
-        date = Time.new(game_day[0..3], game_day[4..5], game_day[6..7]).change(hour: 0, min: min).in_time_zone('Eastern Time (US & Canada)') + 4.hours + hour.hours
+        date = Time.new(game_day[0..3], game_day[4..5], game_day[6..7]).change(hour: 0, min: min).in_time_zone('Eastern Time (US & Canada)') + 5.hours + hour.hours
 
         line_two = closer.index(" ")
         closer_side = line_two ? closer[0..line_two] : ""
