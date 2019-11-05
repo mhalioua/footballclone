@@ -72,6 +72,9 @@ namespace :setup do
     game_day = (Time.now - 28.hours).to_formatted_s(:number)[0..7]
     Rake::Task["setup:full"].invoke(game_day)
     Rake::Task["setup:full"].reenable
+    game_day = (Time.now - 76.hours).to_formatted_s(:number)[0..7]
+    Rake::Task["setup:full"].invoke(game_day)
+    Rake::Task["setup:full"].reenable
   end
 
   task :getWeekly, [:url, :game_link] => [:environment] do |t, args|
