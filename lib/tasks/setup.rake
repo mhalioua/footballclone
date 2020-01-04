@@ -1,27 +1,17 @@
 namespace :setup do
 
   task :daily => :environment do
-    day = Time.now
-    day_index = day.strftime("%j").to_i
-    result = (day_index + 4) / 7 - 35
+    url ="https://www.espn.com/nfl/schedule"
+    Rake::Task["setup:getWeekly"].invoke(url, "nfl", "NFL")
+    Rake::Task["setup:getWeekly"].reenable
 
-    if result > -5
-      if result < 1
-        url = "http://www.espn.com/nfl/schedule/_/week/#{result + 5}"
-      else
-        url = "http://www.espn.com/nfl/schedule/_/week/#{result}/seasontype/2"
-      end
-      Rake::Task["setup:getWeekly"].invoke(url, "nfl", "NFL")
-      Rake::Task["setup:getWeekly"].reenable
+    url = "https://www.espn.com/college-football/schedule/_/group/80"
+    Rake::Task["setup:getWeekly"].invoke(url, "college-football", "CFB")
+    Rake::Task["setup:getWeekly"].reenable
 
-      url = "https://www.espn.com/college-football/schedule/_/group/80"
-      Rake::Task["setup:getWeekly"].invoke(url, "college-football", "CFB")
-      Rake::Task["setup:getWeekly"].reenable
-
-      url = "https://www.espn.com/college-football/schedule/_/group/81"
-      Rake::Task["setup:getWeekly"].invoke(url, "college-football", "CFB1")
-      Rake::Task["setup:getWeekly"].reenable
-    end
+    url = "https://www.espn.com/college-football/schedule/_/group/81"
+    Rake::Task["setup:getWeekly"].invoke(url, "college-football", "CFB1")
+    Rake::Task["setup:getWeekly"].reenable
   end
 
   task :fix => :environment do
